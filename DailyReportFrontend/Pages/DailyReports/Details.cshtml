@@ -1,0 +1,56 @@
+﻿@page
+@model DailyReportFrontend.Pages.DailyReports.DetailsModel
+
+@{
+    ViewData["Title"] = "檢視記錄";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Period Report</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Period.ProjectName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Period.ProjectName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Period.Version)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Period.Version)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Period.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Period.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Period.Message)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Period.Message)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Period.ProjectID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Period.ProjectID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Period.ReoprtID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Period.ReoprtID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./EditReport" asp-route-id="@Model.Period.ReoprtID">Edit Report</a> |
+    <a asp-page="./EditProject" asp-route-id="@Model.Period.ProjectID">Edit Project</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

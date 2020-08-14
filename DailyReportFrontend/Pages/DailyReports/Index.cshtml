@@ -1,0 +1,71 @@
+﻿@page
+@model DailyReportFrontend.Pages.DailyReports.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>目錄</h1>
+
+<p>
+    <a asp-page="Create">新增一筆...</a>
+</p>
+
+<form>
+    <p>
+        <select asp-for="SelectedProject" asp-items="Model.Genres">
+            <option value="">所有專案</option>
+        </select>
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                @Html.DisplayNameFor(model => model.Periods[0].ProjectName)
+            </a>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Periods[0].Version)
+        </th>
+        <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
+                @Html.DisplayNameFor(model => model.Periods[0].Date)
+            </a>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Periods[0].Message)
+        </th>
+        <th>
+            <!--space for edit/detail/delete-->
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Periods)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Version)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @*<a asp-page="./Edit" asp-route-id="@item">Edit</a> |*@
+                <a asp-page="./Details" asp-route-pid="@item.ProjectID" asp-route-rid="@item.ReoprtID">Details</a> @*|
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>*@
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
