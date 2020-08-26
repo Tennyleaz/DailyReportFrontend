@@ -1,0 +1,21 @@
+﻿@page
+@model DailyReportFrontend.Pages.DailyReports.WeeklyModel
+
+@{
+    ViewData["Title"] = "Weekly Report";
+}
+
+<h1>周報</h1>
+
+<table class="table">
+    <tbody>
+        @foreach (var item in Model.WeeklyReport)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ToString())
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
