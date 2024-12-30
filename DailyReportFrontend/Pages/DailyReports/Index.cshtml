@@ -47,6 +47,8 @@
     <tbody>
     @foreach (var item in Model.Periods)
     {
+	    // If you want to use a method with DisplayFor, just store the value in a variable before using it.
+	    string displayTime = item.Date.ToString("yyyy-MM-dd");
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ProjectName)
@@ -55,15 +57,15 @@
                 @Html.DisplayFor(modelItem => item.Version)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+	            @Html.DisplayFor(modelItem => displayTime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Message)
             </td>
             <td>
                 @*<a asp-page="./Edit" asp-route-id="@item">Edit</a> |*@
-                <a asp-page="./Details" asp-route-pid="@item.ProjectID" asp-route-rid="@item.ReoprtID">Details</a> @*|
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>*@
+                <a asp-page="./Details" asp-route-pid="@item.ProjectID" asp-route-rid="@item.ReoprtID">Details</a>
+                @*<a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>*@
             </td>
         </tr>
     }
