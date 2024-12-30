@@ -18,7 +18,7 @@ namespace DailyReportFrontend.Data
         private const string ContentType = "application/json";
         private const string DateFormat = "s";  // I don't know how this property works?
 
-        public MyHttpClient(string serverUrl = "http://10.10.15.65:5001/api")
+        public MyHttpClient(string serverUrl)
         {
             _serverUrl = serverUrl;
             _httpClient = new HttpClient();

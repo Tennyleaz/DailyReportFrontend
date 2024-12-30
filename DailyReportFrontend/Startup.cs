@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,12 +30,26 @@ namespace DailyReportFrontend
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // fix apache proxy
+            //app.UsePathBase("/daily");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+                app.Use((context, next) =>
+                {
+                    context.Request.PathBase = new PathString("/daily");
+                    // fix double slash path from apache
+                    string path = context.Request.Path;
+                    path = path.Replace(@"\\", @"\");
+                    path = path.Replace("//", "/");
+                    context.Request.Path = path;
+                    //Console.WriteLine(context.Request.Path);
+                    return next();
+                });
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();

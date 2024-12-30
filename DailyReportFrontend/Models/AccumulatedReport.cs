@@ -22,6 +22,8 @@ namespace DailyReportFrontend.Models
             MantisList = new HashSet<string>();
         }
 
+        public string DisplayString => this.ToString();
+
         public new string ToString()
         {
             string message = ProjectName + " " + ProjectVersion + ":\n";
