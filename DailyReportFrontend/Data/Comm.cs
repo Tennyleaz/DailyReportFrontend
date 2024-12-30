@@ -7,6 +7,6 @@ namespace DailyReportFrontend.Data
 {
     public static class Comm
     {
-        public static string SERVER_URL = "http://10.10.15.65:5001/api";
+        public const string SERVER_URL = "http://172.16.30.206:5001/api";
     }
 }
